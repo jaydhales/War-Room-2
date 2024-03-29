@@ -24,5 +24,8 @@ contract PuzzleTest is Test {
         vm.startPrank(hacker, hacker);
         Attacker a = new Attacker(slotPuzzleFactory);
         a.attack();
+
+        vm.assertEq(address(slotPuzzleFactory).balance, 0);
+        vm.assertEq(hacker.balance, 3 ether);
     }
 }
